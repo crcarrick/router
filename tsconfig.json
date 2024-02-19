@@ -1,0 +1,4 @@
+{
+  "extends": "@crcarrick/tsconfig",
+  "exclude": ["node_modules", "dist"]
+}

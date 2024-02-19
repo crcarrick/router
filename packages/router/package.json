@@ -1,0 +1,29 @@
+{
+  "name": "@router/router",
+  "version": "1.0.0",
+  "description": "",
+  "author": {
+    "name": "Chris Carrick",
+    "email": "chris@crcarrick.dev"
+  },
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "pnpm clean && tsc -p tsconfig.json",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+    "tests": "",
+    "watch": "pnpm clean && tsc -p tsconfig.build.json --watch"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
