@@ -1,6 +1,9 @@
 !.*
 .eslintrc.js
+plopfile.mjs
 node_modules/
+packages/**/bin
+examples/**/bin
 packages/**/dist/
 examples/**/dist/
 packages/**/node_modules/
