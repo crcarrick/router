@@ -12,8 +12,8 @@
     "fresh": "find . -name 'node_modules' -type d -prune -exec echo 'Deleting {}' \\; -exec rm -rf {} \\; && pnpm install",
     "prepare": "husky",
     "precommit": "lint-staged",
-    "generate:example": "plop example",
-    "generate:package": "plop package",
+    "generate:example": "pnpm run --filter @router/generator generate:example",
+    "generate:package": "pnpm run --filter @router/generator generate:package",
     "examples:start": "pnpm run --filter $NAME start",
     "examples:start:01_basic": "NAME=01_basic pnpm run examples:start"
   },

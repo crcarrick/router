@@ -1,0 +1,23 @@
+{
+  "name": "@router/generator",
+  "version": "1.0.0",
+  "description": "",
+  "author": {
+    "name": "Chris Carrick",
+    "email": "chris@crcarrick.dev"
+  },
+  "type": "module",
+  "scripts": {
+    "generate:example": "plop example",
+    "generate:package": "plop package"
+  },
+  "dependencies": {
+    "find-up": "^7.0.0",
+    "latest-version": "^8.0.0",
+    "plop": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3"
+  }
+}
