@@ -1,6 +1,7 @@
 !.*
 .eslintrc.js
 plopfile.mjs
+vite.config.ts
 node_modules/
 packages/**/bin
 examples/**/bin

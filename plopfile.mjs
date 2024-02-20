@@ -57,7 +57,7 @@ const PACKAGE_JSON = `
   "version": "1.0.0",
   {{#if private}}
   "private": true,
-  {{/unless}}
+  {{/if}}
   "description": "",
   "author": {
     "name": "Chris Carrick",
