@@ -55,6 +55,9 @@ const PACKAGE_JSON = `
 {
   "name": "{{name}}",
   "version": "1.0.0",
+  {{#if private}}
+  "private": true,
+  {{/unless}}
   "description": "",
   "author": {
     "name": "Chris Carrick",
@@ -181,6 +184,7 @@ export default function (
         path: 'examples/{{name}}/package.json',
         template: PACKAGE_JSON,
         data: {
+          private: true,
           dependencies: {
             dependencies: [
               { name: '@router/router', version: 'workspace:*' },
