@@ -9,8 +9,10 @@
     "tests": "pnpm run -r tests",
     "watch": "pnpm run -r --parallel watch",
     "fresh": "find . -name 'node_modules' -type d -prune -exec echo 'Deleting {}' \\; -exec rm -rf {} \\; && pnpm install",
+    "precommit": "lint-staged",
     "generate:example": "plop example",
-    "generate:package": "plop package"
+    "generate:package": "plop package",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +28,10 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "handlebars": "^4.7.8",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "plop": "^4.0.1",
+    "prettier": "^3.2.5",
     "typescript": "5.4.0-beta"
   }
 }
