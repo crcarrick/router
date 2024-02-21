@@ -18,6 +18,10 @@
     "tests": "",
     "watch": "pnpm clean && tsc -p tsconfig.json --watch"
   },
+  "dependencies": {
+    "history": "^5.3.0",
+    "path-to-regexp": "^6.2.1"
+  },
   "devDependencies": {
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.57",

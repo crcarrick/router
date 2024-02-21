@@ -3,13 +3,21 @@ import {
   createBrowserRouter,
   createRoute,
 } from '@router/router'
+import { lazy } from 'react'
 
-import About from './About.js'
-import Home from './Home.js'
+const Home = lazy(() => import('./Home.js'))
+const About = lazy(() => import('./About.js'))
 
 const router = createBrowserRouter([
   createRoute({
     path: '/',
+    loader() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ message: 'Hello, world!' })
+        }, 1000)
+      })
+    },
     component: Home,
   }),
   createRoute({

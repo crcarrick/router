@@ -1,2 +1,7 @@
-export { createBrowserRouter } from './routers.js'
+export { Link } from './components/Link.js'
+export { RouterProvider } from './contexts/RouterProvider.js'
+export { useLocation } from './hooks/useLocation.js'
+export { useNavigate } from './hooks/useNavigate.js'
+export { useParams } from './hooks/useParams.js'
+export { createBrowserRouter, createRoute } from './routers.js'
 export { Loader, RouteObject } from './types.js'
