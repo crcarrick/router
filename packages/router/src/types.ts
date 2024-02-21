@@ -23,7 +23,7 @@ type Params<T extends readonly string[]> = T extends [
 export type PathParams<T extends string> = Params<ParamsList<Segments<T>>>
 
 export interface Loader<T extends string> {
-  (params: PathParams<T>): unknown
+  (params: PathParams<T>): any
 }
 
 interface RouteComponentProps<T extends string, U> {
