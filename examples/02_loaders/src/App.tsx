@@ -5,19 +5,16 @@ import {
 } from '@router/router'
 import { lazy } from 'react'
 
+import { homeLoader } from './Home.js'
+
 const Home = lazy(() => import('./Home.js'))
 const About = lazy(() => import('./About.js'))
 
 const router = createBrowserRouter([
   createRoute({
     path: '/',
-    loader() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({ message: 'Hello, world!' })
-        }, 1000)
-      })
-    },
+    id: 'home',
+    loader: homeLoader,
     component: Home,
   }),
   createRoute({

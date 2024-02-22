@@ -12,7 +12,7 @@ type ParamsList<T extends readonly string[]> = L.Filter<
   ':'
 >
 type Params<T extends readonly string[]> = T extends [
-  infer Head,
+  infer Head extends string,
   ...infer Tail extends readonly string[],
 ]
   ? Head extends `:${infer P}`
@@ -23,28 +23,26 @@ type Params<T extends readonly string[]> = T extends [
 export type PathParams<T extends string> = Params<ParamsList<Segments<T>>>
 
 export interface Loader<T extends string> {
-  (params: PathParams<T>): any
+  (params: PathParams<T>): unknown
 }
 
-interface RouteComponentProps<T extends string, U> {
-  data: U
-  params: PathParams<T>
-}
+interface RouteComponentProps {}
 
-type RouteComponent<T extends string, U> = ComponentType<
-  RouteComponentProps<T, U>
->
+type RouteComponent = ComponentType<RouteComponentProps>
 
-export type RouteObject<T extends string, U extends Loader<any> = Loader<T>> = {
+export type RouteObject<T extends string> = {
   path: T
-  loader?: U
-  // TODO: use the return type of the loader as the data type
-  component: NoInfer<RouteComponent<T, ReturnType<U>>>
+  loader?: Loader<T>
+  component: RouteComponent
   // TODO: it would be sick if the children loaders could get the parent params
-  children?: RouteObject<any>[]
+  children?: Route<any>[]
+  id?: string
 }
 
-export type Route<T extends string> = Branded<RouteObject<T>, 'RouteObject'>
+export type Route<T extends string> = Branded<
+  O.Merge<{ id: string }, RouteObject<T>>,
+  'RouteObject'
+>
 
 export type BrowserRouter<T extends string> = Branded<
   {
@@ -53,3 +51,6 @@ export type BrowserRouter<T extends string> = Branded<
   },
   'BrowserRouter'
 >
+
+export type LoaderData<T extends (...args: any[]) => any> =
+  ReturnType<T> extends Promise<infer U> ? U | null : ReturnType<T> | null

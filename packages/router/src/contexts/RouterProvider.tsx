@@ -1,5 +1,4 @@
 import type { Location } from 'history'
-import { match } from 'path-to-regexp'
 import {
   Suspense,
   createContext,
@@ -9,7 +8,11 @@ import {
   useState,
 } from 'react'
 
-import type { BrowserRouter, PathParams } from '../types.js'
+import type { BrowserRouter } from '../types.js'
+import { matchRoutes } from '../utils/matchRoutes.js'
+import { renderMatches } from '../utils/renderMatches.js'
+
+import { RouteDataLoaderProvider } from './RouteLoaderDataProvider.js'
 
 export type Params<T> = Readonly<Partial<T>>
 
@@ -48,52 +51,6 @@ interface RouterProviderProps<T extends string> {
   router: BrowserRouter<T>
 }
 
-function findRoute<T extends string>(
-  router: BrowserRouter<T>,
-  location: Location,
-) {
-  for (const route of router.routes) {
-    const matcher = match(route.path)
-    const matched = matcher(location.pathname)
-
-    if (matched) {
-      const Component = route.component
-
-      interface RouteComponentProps {
-        component: typeof Component
-        params: PathParams<typeof route.path>
-        loader?: typeof route.loader
-      }
-
-      const RouteComponent = ({
-        component: Component,
-        loader,
-        params,
-      }: RouteComponentProps) => {
-        const [loaderData, setLoaderData] = useState({})
-
-        useLayoutEffect(() => {
-          Promise.resolve(loader?.(params))
-            .then((value) => {
-              setLoaderData(value as {})
-            })
-            .catch(() => {})
-        }, [loader, params])
-
-        return <Component params={params} data={loaderData} />
-      }
-
-      return (
-        <RouteComponent
-          component={Component}
-          loader={route.loader}
-          params={matched.params as PathParams<typeof route.path>}
-        />
-      )
-    }
-  }
-}
-
 export function RouterProvider<T extends string>({
   router,
 }: RouterProviderProps<T>) {
@@ -123,11 +80,16 @@ export function RouterProvider<T extends string>({
     [params, location, navigate],
   )
 
-  const route = useMemo(() => findRoute(router, location), [router, location])
+  const Route = useMemo(() => {
+    const route = matchRoutes(router.routes, location.pathname)
+    return route ? renderMatches(route, location.pathname) : null
+  }, [router, location])
 
-  return route ? (
+  return Route ? (
     <Suspense fallback={<div>Loading...</div>}>
-      <RouterContext.Provider value={value}>{route}</RouterContext.Provider>
+      <RouterContext.Provider value={value}>
+        <RouteDataLoaderProvider>{Route}</RouteDataLoaderProvider>
+      </RouterContext.Provider>
     </Suspense>
   ) : (
     <div>Not found</div>
