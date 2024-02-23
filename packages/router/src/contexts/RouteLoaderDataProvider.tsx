@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import { createContext, useCallback, useMemo, useState } from 'react'
 
 import { Route } from '../types.js'
 
@@ -54,8 +48,4 @@ export function RouteDataLoaderProvider({
       {children}
     </RouteDataLoaderContext.Provider>
   )
-}
-
-export function useRouteDataLoaderContext() {
-  return useContext(RouteDataLoaderContext)
 }

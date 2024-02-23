@@ -1,8 +1,14 @@
-import { createContext, useState, useLayoutEffect, useMemo } from 'react'
+import {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react'
 
 import type { PathParams, Route } from '../types.js'
 
-import { useRouteDataLoaderContext } from './RouteLoaderDataProvider.js'
+import { RouteDataLoaderContext } from './RouteLoaderDataProvider.js'
 
 interface LoaderDataContextValue {
   loaderData: unknown
@@ -23,7 +29,7 @@ export function LoaderDataProvider<T extends string>({
   params,
   route,
 }: LoaderDataProviderProps<T>) {
-  const { addLoaderEntry } = useRouteDataLoaderContext()
+  const { addLoaderEntry } = useContext(RouteDataLoaderContext)
 
   const [loaderData, setLoaderData] =
     useState<LoaderDataContextValue['loaderData']>(undefined)

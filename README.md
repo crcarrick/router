@@ -49,7 +49,7 @@ pnpm examples:start:01_basic
 - createMemoryRouter
 - createStaticHandler
 - createStaticRouter
-- RouterProvider
+- RouterProvider ✅
 - StaticRouterProvider
 - BrowserRouter
 - HashRouter
