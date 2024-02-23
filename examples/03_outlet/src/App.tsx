@@ -1,36 +1,28 @@
 import {
   createBrowserRouter,
   createRoute,
-  Link,
+  Outlet,
   RouterProvider,
 } from '@router/router'
 
-function Home() {
+function Parent() {
   return (
     <div>
-      <h1>Home</h1>
-      <Link to="/about">About</Link>
+      <h1>Parent</h1>
+      <Outlet />
     </div>
   )
 }
 
-function About() {
-  return (
-    <div>
-      <h1>About</h1>
-      <Link to="/">Home</Link>
-    </div>
-  )
+function Child() {
+  return <h2>Child</h2>
 }
 
 const router = createBrowserRouter([
   createRoute({
     path: '/',
-    component: Home,
-  }),
-  createRoute({
-    path: '/about',
-    component: About,
+    component: Parent,
+    children: [createRoute({ path: 'child', component: Child })],
   }),
 ])
 
