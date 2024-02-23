@@ -1,15 +1,15 @@
-import { startTransition, type MouseEventHandler, type ReactNode } from 'react'
+import { startTransition } from 'react'
 
 import { useNavigate } from '../hooks/useNavigate.js'
 
 interface LinkProps {
   to: string
-  children: ReactNode
+  children: React.ReactNode
 }
 
 export function Link({ to, children }: LinkProps) {
   const navigate = useNavigate()
-  const handleClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
     event.preventDefault()
     startTransition(() => {
       navigate(to)

@@ -9,10 +9,9 @@ export function renderMatches<T extends string>(
   route: Route<T>,
   pathname: string,
 ) {
-  const matched = match<PathParams<T>>(route.path)(pathname)
+  const matched = match<PathParams<T>>(route.full, { end: false })(pathname)
 
   invariant(matched, `No match found for path: ${pathname}`)
 
-  // ... we need to render the children into <Outlet /> as well 🤔
   return <RouteRenderer route={route} params={matched.params} />
 }

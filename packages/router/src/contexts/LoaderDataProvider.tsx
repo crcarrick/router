@@ -1,6 +1,6 @@
 import { createContext, useState, useLayoutEffect, useMemo } from 'react'
 
-import type { Route, PathParams } from '../types.js'
+import type { PathParams, Route } from '../types.js'
 
 import { useRouteDataLoaderContext } from './RouteLoaderDataProvider.js'
 

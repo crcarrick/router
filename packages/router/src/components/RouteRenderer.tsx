@@ -1,4 +1,5 @@
 import { LoaderDataProvider } from '../contexts/LoaderDataProvider.js'
+import { OutletProvider } from '../contexts/OutletProvider.js'
 import type { PathParams, Route } from '../types.js'
 
 interface RouteRendererProps<T extends string> {
@@ -14,7 +15,9 @@ export function RouteRenderer<T extends string>({
 
   return (
     <LoaderDataProvider route={route} params={params}>
-      <Component />
+      <OutletProvider route={route}>
+        <Component />
+      </OutletProvider>
     </LoaderDataProvider>
   )
 }

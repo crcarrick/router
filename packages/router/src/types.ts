@@ -1,5 +1,4 @@
 import type { BrowserHistory } from 'history'
-import type { ComponentType } from 'react'
 import { L, O, S } from 'ts-toolbelt'
 
 declare const brand: unique symbol
@@ -28,7 +27,7 @@ export interface Loader<T extends string> {
 
 interface RouteComponentProps {}
 
-type RouteComponent = ComponentType<RouteComponentProps>
+type RouteComponent = React.ComponentType<RouteComponentProps>
 
 export type RouteObject<T extends string> = {
   path: T
@@ -40,7 +39,7 @@ export type RouteObject<T extends string> = {
 }
 
 export type Route<T extends string> = Branded<
-  O.Merge<{ id: string }, RouteObject<T>>,
+  O.Merge<{ id: string; full: string }, RouteObject<T>>,
   'RouteObject'
 >
 

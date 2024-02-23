@@ -17,6 +17,7 @@ export function matchRoutes<T extends string>(
     if (matched) {
       return {
         ...route,
+        full: current,
         children: [],
       }
     }
@@ -26,6 +27,7 @@ export function matchRoutes<T extends string>(
       if (result) {
         return {
           ...route,
+          full: current,
           children: [result],
         }
       }
