@@ -64,7 +64,7 @@ pnpm examples:start:01_basic
 - lazy
 - loader ✅
 - shouldRevalidate
-- Await
+- Await ✅
 - Form
 - Link ✅
 - Link (RN)
@@ -76,7 +76,7 @@ pnpm examples:start:01_basic
 - ScrollRestoration
 - useActionData
 - useAsyncError
-- useAsyncValue
+- useAsyncValue ✅
 - useBeforeUnload
 - useBlocker
 - useFetcher
@@ -112,7 +112,7 @@ pnpm examples:start:01_basic
 - createRoutesFromChildren
 - createRoutesFromElements
 - createSearchParams
-- defer
+- defer ✅
 - generatePath
 - isRouteErrorResponse
 - Location
