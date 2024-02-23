@@ -1,4 +1,5 @@
 import type { BrowserHistory } from 'history'
+import { MatchFunction } from 'path-to-regexp'
 import { L, O, S } from 'ts-toolbelt'
 
 declare const brand: unique symbol
@@ -38,12 +39,14 @@ export type RouteObject<T extends string> = {
   Component?: RouteComponent
   errorElement?: React.ReactElement
   ErrorBoundary?: React.ComponentType
-  children?: Route<any>[]
+  children?: RouteObject<any>[]
 }
 
 interface RouteAdditions {
   id: string
   full: string
+  children: Route<any>[]
+  matcher: MatchFunction<{}>
 }
 
 export type Route<T extends string> = Branded<

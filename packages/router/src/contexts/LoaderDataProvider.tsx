@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react'
 
+import { useParams } from '../hooks/useParams.js'
 import type { PathParams, Route } from '../types.js'
 
 import { RouteDataLoaderContext } from './RouteLoaderDataProvider.js'
@@ -20,23 +21,22 @@ export const LoaderDataContext = createContext<LoaderDataContextValue>({
 
 interface LoaderDataProviderProps<T extends string> {
   children: React.ReactNode
-  params: PathParams<T>
   route: Route<T>
 }
 
 export function LoaderDataProvider<T extends string>({
   children,
-  params,
   route,
 }: LoaderDataProviderProps<T>) {
   const { addLoaderEntry } = useContext(RouteDataLoaderContext)
+  const params = useParams()
 
   const [loaderData, setLoaderData] =
     useState<LoaderDataContextValue['loaderData']>(undefined)
 
   useLayoutEffect(() => {
     if (route.loader) {
-      Promise.resolve(route.loader(params)).then(
+      Promise.resolve(route.loader(params as PathParams<T>)).then(
         (data) => {
           addLoaderEntry(route, data)
           setLoaderData(data)

@@ -1,4 +1,3 @@
-import { match } from 'path-to-regexp'
 import { createContext, useContext, useMemo } from 'react'
 
 import { useLocation } from '../hooks/useLocation.js'
@@ -27,7 +26,7 @@ export function ParamsProvider<T extends string>({
   const location = useLocation()
 
   const value = useMemo<ParamsContextValue<T>>(() => {
-    const matched = match<Params<T>>(route.full)(location.pathname)
+    const matched = route.matcher(location.pathname)
     const params = matched ? matched.params : {}
 
     return {

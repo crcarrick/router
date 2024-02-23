@@ -2,7 +2,6 @@ import { resolve } from '@crcarrick/example-utils'
 import {
   Await,
   createBrowserRouter,
-  createRoute,
   defer,
   RouterProvider,
   useAsyncValue,
@@ -67,11 +66,11 @@ function Baz() {
 }
 
 const router = createBrowserRouter([
-  createRoute({
+  {
     path: '/',
     element: <Home />,
     loader: homeLoader,
-  }),
+  },
 ])
 
 export default function App() {

@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  createRoute,
-  Outlet,
-  RouterProvider,
-} from '@crcarrick/router'
+import { createBrowserRouter, Outlet, RouterProvider } from '@crcarrick/router'
 
 function Parent() {
   return (
@@ -19,11 +14,11 @@ function Child() {
 }
 
 const router = createBrowserRouter([
-  createRoute({
+  {
     path: '/',
     element: <Parent />,
-    children: [createRoute({ path: 'child', element: <Child /> })],
-  }),
+    children: [{ path: 'child', element: <Child /> }],
+  },
 ])
 
 export default function App() {

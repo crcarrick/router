@@ -1,7 +1,6 @@
 import { resolve } from '@crcarrick/example-utils'
 import {
   createBrowserRouter,
-  createRoute,
   RouterProvider,
   useLoaderData,
   type LoaderData,
@@ -23,11 +22,11 @@ function Home() {
 }
 
 const router = createBrowserRouter([
-  createRoute({
+  {
     path: '/',
     loader: homeLoader,
     element: <Home />,
-  }),
+  },
 ])
 
 export default function App() {
