@@ -1,6 +1,6 @@
 {
-  "name": "@router/router",
-  "version": "1.0.0",
+  "name": "@crcarrick/router",
+  "version": "0.0.1",
   "description": "",
   "author": {
     "name": "Chris Carrick",

@@ -1,5 +1,9 @@
 # Router 🚂
 
+React router clone. Currently, this is duct-taped together.. don't judge me.
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-DCFF50?style=for-the-badge&logo=codesandbox)](https://githubbox.com/crcarrick/router)
+
 ## Development
 
 #### Setup
