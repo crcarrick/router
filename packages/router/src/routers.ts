@@ -8,10 +8,7 @@ export function createRoute<const T extends string>(route: RouteObject<T>) {
   return { ...route, id } as Route<T>
 }
 
-export function createBrowserRouter<T extends string>(
-  routes: Array<Route<T>>,
-): BrowserRouter<T> {
+export function createBrowserRouter<T extends string>(routes: Array<Route<T>>) {
   const history = createBrowserHistory({ window })
-
   return { history, routes } as BrowserRouter<T>
 }

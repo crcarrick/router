@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   createRoute({
     path: '/',
     loader: homeLoader,
-    component: Home,
+    element: <Home />,
   }),
 ])
 

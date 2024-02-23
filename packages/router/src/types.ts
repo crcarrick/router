@@ -30,12 +30,12 @@ interface RouteComponentProps {}
 type RouteComponent = React.ComponentType<RouteComponentProps>
 
 export type RouteObject<T extends string> = {
+  id?: string
   path: T
   loader?: Loader<T>
-  component: RouteComponent
-  // TODO: it would be sick if the children loaders could get the parent params
+  element?: React.ReactNode
+  Component?: RouteComponent
   children?: Route<any>[]
-  id?: string
 }
 
 export type Route<T extends string> = Branded<

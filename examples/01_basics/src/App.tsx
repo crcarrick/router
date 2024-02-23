@@ -26,11 +26,11 @@ function About() {
 const router = createBrowserRouter([
   createRoute({
     path: '/',
-    component: Home,
+    element: <Home />,
   }),
   createRoute({
     path: '/about',
-    component: About,
+    element: <About />,
   }),
 ])
 

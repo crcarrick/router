@@ -69,7 +69,7 @@ function Baz() {
 const router = createBrowserRouter([
   createRoute({
     path: '/',
-    component: Home,
+    element: <Home />,
     loader: homeLoader,
   }),
 ])

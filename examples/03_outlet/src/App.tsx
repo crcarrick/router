@@ -21,8 +21,8 @@ function Child() {
 const router = createBrowserRouter([
   createRoute({
     path: '/',
-    component: Parent,
-    children: [createRoute({ path: 'child', component: Child })],
+    element: <Parent />,
+    children: [createRoute({ path: 'child', element: <Child /> })],
   }),
 ])
 
