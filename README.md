@@ -77,7 +77,7 @@ pnpm examples:start:01_basic
 - useActionData
 - useAsyncError
 - useAsyncValue ✅
-- useBeforeUnload
+- useBeforeUnload ✅
 - useBlocker
 - useFetcher
 - useFetchers
