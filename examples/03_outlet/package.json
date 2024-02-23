@@ -17,7 +17,8 @@
     "start": "vite"
   },
   "dependencies": {
-    "@router/router": "workspace:*",
+    "@crcarrick/example-utils": "workspace:*",
+    "@crcarrick/router": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

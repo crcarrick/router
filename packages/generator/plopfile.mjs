@@ -85,7 +85,7 @@ export default function (
       {
         type: 'add',
         path: path.join(packages, 'tsconfig.json'),
-        template: './templates/tsconfig.json.hbs',
+        templateFile: './templates/tsconfig.json.hbs',
       },
       { type: 'install', dest: 'packages' },
     ],
@@ -109,7 +109,8 @@ export default function (
           private: true,
           dependencies: {
             dependencies: [
-              { name: '@router/router', version: 'workspace:*' },
+              { name: '@crcarrick/router', version: 'workspace:*' },
+              { name: '@crcarrick/example-utils', version: 'workspace:*' },
               { name: 'react', version: versions['react'] },
               { name: 'react-dom', version: versions['react-dom'] },
             ],

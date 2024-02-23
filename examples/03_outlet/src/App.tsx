@@ -3,7 +3,7 @@ import {
   createRoute,
   Outlet,
   RouterProvider,
-} from '@router/router'
+} from '@crcarrick/router'
 
 function Parent() {
   return (

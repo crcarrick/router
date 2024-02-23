@@ -52,4 +52,6 @@ export type BrowserRouter<T extends string> = Branded<
 >
 
 export type LoaderData<T extends (...args: any[]) => any> =
-  ReturnType<T> extends Promise<infer U> ? U | null : ReturnType<T> | null
+  ReturnType<T> extends Promise<infer U>
+    ? U | undefined
+    : ReturnType<T> | undefined

@@ -1,5 +1,5 @@
 {
-  "name": "{{name}}",
+  "name": "{{{name}}}",
   "version": "1.0.0",
   {{#if private}}
   "private": true,
@@ -17,13 +17,13 @@
   "type": "module",
   "scripts": {
     {{#each scripts}}
-    "{{name}}": "{{command}}"{{#unless @last}},{{/unless}}
+    "{{{name}}}": "{{{command}}}"{{#unless @last}},{{/unless}}
     {{/each}}
   },
   {{#each dependencies}}
   "{{@key}}": {
     {{#each this}}
-    "{{name}}": "{{version}}"{{#unless @last}},{{/unless}}
+    "{{{name}}}": "{{{version}}}"{{#unless @last}},{{/unless}}
     {{/each}}
   }{{#unless @last}},{{/unless}}
   {{/each}}

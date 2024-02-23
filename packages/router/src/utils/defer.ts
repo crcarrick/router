@@ -17,7 +17,7 @@ class Deferred<T> {
   }
 }
 
-type Resource<T> = { read(): T } & {}
+export type Resource<T> = { read(): T } & {}
 
 function createResource<T>(deferred: Deferred<T>): Resource<T> {
   return {
@@ -34,7 +34,7 @@ function createResource<T>(deferred: Deferred<T>): Resource<T> {
   }
 }
 
-type DeferredResult<T> = { [K in keyof T]: Resource<Awaited<T[K]>> } & {}
+export type DeferredResult<T> = { [K in keyof T]: Resource<Awaited<T[K]>> } & {}
 
 export function defer<const T extends Record<string, any>>(
   values: T,
@@ -42,7 +42,7 @@ export function defer<const T extends Record<string, any>>(
   const result = {} as DeferredResult<T>
   for (const key in values) {
     if (Object.prototype.hasOwnProperty.call(values, key)) {
-      result[key] = createResource(new Deferred(values[key]))
+      result[key] = createResource(new Deferred(Promise.resolve(values[key])))
     }
   }
 

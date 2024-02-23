@@ -14,8 +14,10 @@
     "precommit": "lint-staged",
     "generate:example": "pnpm run --filter @router/generator generate:example",
     "generate:package": "pnpm run --filter @router/generator generate:package",
-    "examples:start:01_basic": "pnpm run --filter 01_basic start",
-    "examples:start:02_loader": "pnpm run --filter 02_loader start"
+    "examples:start:01_basics": "pnpm run --filter 01_basics start",
+    "examples:start:02_loader": "pnpm run --filter 02_loader start",
+    "examples:start:03_outlet": "pnpm run --filter 03_outlet start",
+    "examples:start:04_defers": "pnpm run --filter 04_defers start"
   },
   "keywords": [],
   "author": "",

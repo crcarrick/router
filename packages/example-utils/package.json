@@ -1,0 +1,25 @@
+{
+  "name": "@crcarrick/example-utils",
+  "version": "1.0.0",
+  "description": "",
+  "author": {
+    "name": "Chris Carrick",
+    "email": "chris@crcarrick.dev"
+  },
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "pnpm clean && tsc -p tsconfig.json",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+    "tests": "",
+    "watch": "pnpm clean && tsc -p tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "typescript": "^5.4.0-beta"
+  }
+}

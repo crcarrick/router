@@ -3,7 +3,7 @@ import {
   createRoute,
   Link,
   RouterProvider,
-} from '@router/router'
+} from '@crcarrick/router'
 
 function Home() {
   return (

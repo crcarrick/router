@@ -1,15 +1,14 @@
+import { resolve } from '@crcarrick/example-utils'
 import {
   createBrowserRouter,
   createRoute,
   RouterProvider,
   useLoaderData,
   type LoaderData,
-} from '@router/router'
+} from '@crcarrick/router'
 
 function homeLoader() {
-  return new Promise<{ message: string }>((resolve) => {
-    setTimeout(() => resolve({ message: 'Hello from the loader!' }), 1000)
-  })
+  return resolve({ message: 'Hello from the loader!' }, 1000)
 }
 
 function Home() {
