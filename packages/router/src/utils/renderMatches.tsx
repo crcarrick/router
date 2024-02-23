@@ -1,6 +1,6 @@
 import { match } from 'path-to-regexp'
 
-import { RouteRenderer } from '../components/RouteRenderer.js'
+import { Render } from '../components/Render.js'
 import type { PathParams, Route } from '../types.js'
 
 import { invariant } from './invariant.js'
@@ -13,5 +13,5 @@ export function renderMatches<T extends string>(
 
   invariant(matched, `No match found for path: ${pathname}`)
 
-  return <RouteRenderer route={route} params={matched.params} />
+  return <Render route={route} params={matched.params} />
 }

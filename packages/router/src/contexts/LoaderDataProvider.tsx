@@ -41,7 +41,9 @@ export function LoaderDataProvider<T extends string>({
           addLoaderEntry(route, data)
           setLoaderData(data)
         },
-        (error) => console.error(error),
+        (error) => {
+          throw error
+        },
       )
     }
   }, [params, route, addLoaderEntry])

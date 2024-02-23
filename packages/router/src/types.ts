@@ -10,16 +10,16 @@ type ParamsList<T extends readonly string[]> = L.Filter<
   L.Select<T, `:${string}`>,
   ':'
 >
-type Params<T extends readonly string[]> = T extends [
-  infer Head extends string,
-  ...infer Tail extends readonly string[],
-]
-  ? Head extends `:${infer P}`
-    ? O.Merge<{ [K in P]: string }, Params<Tail>>
-    : Params<Tail>
-  : {}
-
-export type PathParams<T extends string> = Params<ParamsList<Segments<T>>>
+export type PathParams<T extends string> =
+  ParamsList<Segments<T>> extends [
+    infer Head extends string,
+    ...infer Tail extends readonly string[],
+  ]
+    ? Head extends `:${infer P}`
+      ? O.Merge<{ [K in P]: string }, Params<Tail>>
+      : Params<Tail>
+    : {}
+export type Params<T> = Readonly<Partial<T>>
 
 export interface Loader<T extends string> {
   (params: PathParams<T>): unknown
@@ -33,13 +33,21 @@ export type RouteObject<T extends string> = {
   id?: string
   path: T
   loader?: Loader<T>
+  handle?: Record<string, unknown>
   element?: React.ReactNode
   Component?: RouteComponent
+  errorElement?: React.ReactElement
+  ErrorBoundary?: React.ComponentType
   children?: Route<any>[]
 }
 
+interface RouteAdditions {
+  id: string
+  full: string
+}
+
 export type Route<T extends string> = Branded<
-  O.Merge<{ id: string; full: string }, RouteObject<T>>,
+  O.Merge<RouteAdditions, RouteObject<T>>,
   'RouteObject'
 >
 

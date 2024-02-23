@@ -13,6 +13,7 @@ export const AwaitContext = createContext<AwaitContextValue<unknown>>({
 interface AwaitProviderProps<T> {
   children: React.ReactNode
   resolve: Resource<T>
+  errorElement?: React.ReactNode
 }
 
 export function AwaitProvider<T>({ children, resolve }: AwaitProviderProps<T>) {

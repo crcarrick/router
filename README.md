@@ -44,6 +44,9 @@ pnpm examples:start:01_basic
 ## Features to copy
 
 ```
+✅ -- done
+🤔 -- partially done
+
 - createBrowserRouter ✅
 - createHashRouter
 - createMemoryRouter
@@ -75,7 +78,7 @@ pnpm examples:start:01_basic
 - Routes
 - ScrollRestoration
 - useActionData
-- useAsyncError
+- useAsyncError 🤔
 - useAsyncValue ✅
 - useBeforeUnload ✅
 - useBlocker
@@ -99,8 +102,8 @@ pnpm examples:start:01_basic
 - unstable_usePrompt
 - useResolvedPath
 - useRevalidator
-- useRouteError
-- useRouteLoaderData
+- useRouteError 🤔
+- useRouteLoaderData ✅
 - useRoutes
 - useSearchParams
 - useSearchParams (RN)

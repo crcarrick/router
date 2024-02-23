@@ -75,10 +75,11 @@ export function RouterProvider<T extends string>({
     [location, navigate],
   )
 
-  const Route = useMemo(() => {
+  const { Route } = useMemo(() => {
     const route = matchRoutes(router.routes, location.pathname)
-    return route ? renderMatches(route, location.pathname) : null
-  }, [router, location])
+    const Route = route ? renderMatches(route, location.pathname) : null
+    return { route, Route }
+  }, [router.routes, location.pathname])
 
   return Route ? (
     <Suspense fallback={fallbackElement ?? <div>Loading...</div>}>
