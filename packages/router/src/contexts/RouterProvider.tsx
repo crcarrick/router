@@ -44,10 +44,12 @@ export const RouterContext = createContext<RouterContextValue>({
 
 interface RouterProviderProps<T extends string> {
   router: BrowserRouter<T>
+  fallbackElement?: React.ReactNode
 }
 
 export function RouterProvider<T extends string>({
   router,
+  fallbackElement,
 }: RouterProviderProps<T>) {
   const [location, setLocation] = useState<Location>(
     window.location as unknown as Location,
@@ -79,7 +81,7 @@ export function RouterProvider<T extends string>({
   }, [router, location])
 
   return Route ? (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={fallbackElement ?? <div>Loading...</div>}>
       <RouterContext.Provider value={value}>
         <RouteDataLoaderProvider>{Route}</RouteDataLoaderProvider>
       </RouterContext.Provider>
