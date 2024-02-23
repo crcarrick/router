@@ -14,8 +14,6 @@ import { renderMatches } from '../utils/renderMatches.js'
 
 import { RouteDataLoaderProvider } from './RouteLoaderDataProvider.js'
 
-export type Params<T> = Readonly<Partial<T>>
-
 interface NavigateOptions {
   replace?: boolean
   state?: any
@@ -26,12 +24,10 @@ export interface NavigateFunction {
 }
 
 interface RouterContextValue {
-  params: Params<any>
   location: Location
   navigate: NavigateFunction
 }
 
-const DEFAULT_PARAMS: Params<any> = {}
 const DEFAULT_NAVIGATE: NavigateFunction = () => {}
 const DEFAULT_LOCATION: Location = {
   hash: '',
@@ -42,7 +38,6 @@ const DEFAULT_LOCATION: Location = {
 }
 
 export const RouterContext = createContext<RouterContextValue>({
-  params: DEFAULT_PARAMS,
   location: DEFAULT_LOCATION,
   navigate: DEFAULT_NAVIGATE,
 })
@@ -54,7 +49,6 @@ interface RouterProviderProps<T extends string> {
 export function RouterProvider<T extends string>({
   router,
 }: RouterProviderProps<T>) {
-  const [params, _setParams] = useState<Params<any>>(DEFAULT_PARAMS)
   const [location, setLocation] = useState<Location>(
     window.location as unknown as Location,
   )
@@ -73,11 +67,10 @@ export function RouterProvider<T extends string>({
 
   const value = useMemo<RouterContextValue>(
     () => ({
-      params,
       location,
       navigate,
     }),
-    [params, location, navigate],
+    [location, navigate],
   )
 
   const Route = useMemo(() => {

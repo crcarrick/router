@@ -35,7 +35,6 @@ const router = createBrowserRouter([
         path: ':postId',
         component: function Post() {
           const params = useParams()
-
           return <div>Post {params.postId}</div>
         },
       }),

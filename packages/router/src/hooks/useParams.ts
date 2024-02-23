@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
-import { RouterContext, type Params } from '../contexts/RouterProvider.js'
+import { ParamsContext, type Params } from '../contexts/ParamsProvider.js'
 
 export function useParams<T extends Params<any>>() {
-  return useContext(RouterContext).params as T
+  return useContext(ParamsContext).params as T
 }

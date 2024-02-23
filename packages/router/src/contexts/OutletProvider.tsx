@@ -19,8 +19,6 @@ export function OutletProvider<T extends string>({
   children,
   route,
 }: OutletProviderProps<T>) {
-  console.log(route)
-
   const value = useMemo<OutletContextValue>(
     () => ({ route: route.children?.[0] }),
     [route],
