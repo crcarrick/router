@@ -1,12 +1,15 @@
 import React from 'react'
 
+import { ErrorProvider } from '../contexts/ErrorProvider.js'
 import { LoaderDataProvider } from '../contexts/LoaderDataProvider.js'
 import { OutletProvider } from '../contexts/OutletProvider.js'
 import { ParamsProvider } from '../contexts/ParamsProvider.js'
 import type { Route } from '../types.js'
 import { invariant } from '../utils/invariant.js'
 
-interface RenderProps<T extends string> {
+import { RouteErrorBoundary } from './RouteErrorBoundary.js'
+
+export interface RenderProps<T extends string> {
   route: Route<T>
 }
 
@@ -22,31 +25,27 @@ export function Render<T extends string>({ route }: RenderProps<T>) {
     !(hasElement && hasComponent),
     `Route \`${route.path}\` should have either element or Component, not both`,
   )
-
-  const Component = route.Component ? <route.Component /> : route.element
-  const Route = (
-    <ParamsProvider route={route}>
-      <LoaderDataProvider route={route}>
-        <OutletProvider route={route}>{Component}</OutletProvider>
-      </LoaderDataProvider>
-    </ParamsProvider>
+  invariant(
+    !(route.ErrorBoundary && route.errorElement),
+    `Route ${route.path} should have either ErrorBoundary or errorElement, not both`,
   )
 
-  if (route.ErrorBoundary || route.errorElement) {
-    invariant(
-      !(route.ErrorBoundary && route.errorElement),
-      `Route ${route.path} should have either ErrorBoundary or errorElement, not both`,
-    )
+  const Component = route.Component ? <route.Component /> : route.element
+  const ErrorComponent = route.ErrorBoundary ? (
+    <route.ErrorBoundary />
+  ) : (
+    route.errorElement
+  )
 
-    const ErrorElement = route.ErrorBoundary ? (
-      <route.ErrorBoundary />
-    ) : (
-      route.errorElement
-    )
-    if (React.isValidElement(ErrorElement)) {
-      return React.cloneElement(ErrorElement, {}, Route)
-    }
-  }
-
-  return Route
+  return (
+    <ErrorProvider>
+      <ParamsProvider route={route}>
+        <RouteErrorBoundary errorElement={ErrorComponent}>
+          <LoaderDataProvider route={route}>
+            <OutletProvider route={route}>{Component}</OutletProvider>
+          </LoaderDataProvider>
+        </RouteErrorBoundary>
+      </ParamsProvider>
+    </ErrorProvider>
+  )
 }

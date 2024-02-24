@@ -62,7 +62,7 @@ pnpm examples:start:01_basic
 - StaticRouter
 - Route
 - action
-- errorElement
+- errorElement ✅
 - hydrateFallbackElement
 - lazy
 - loader ✅
@@ -78,7 +78,7 @@ pnpm examples:start:01_basic
 - Routes
 - ScrollRestoration
 - useActionData
-- useAsyncError 🤔
+- useAsyncError ✅
 - useAsyncValue ✅
 - useBeforeUnload ✅
 - useBlocker
@@ -102,7 +102,7 @@ pnpm examples:start:01_basic
 - unstable_usePrompt
 - useResolvedPath
 - useRevalidator
-- useRouteError 🤔
+- useRouteError ✅
 - useRouteLoaderData ✅
 - useRoutes
 - useSearchParams

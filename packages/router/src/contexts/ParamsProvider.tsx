@@ -1,11 +1,9 @@
 import { createContext, useContext, useMemo } from 'react'
 
 import { useLocation } from '../hooks/useLocation.js'
-import type { Route } from '../types.js'
+import type { Params, Route } from '../types.js'
 
-export type Params<T> = Readonly<Partial<T>>
-
-interface ParamsContextValue<T> {
+export interface ParamsContextValue<T> {
   params: Params<T> | {}
 }
 
@@ -13,7 +11,7 @@ export const ParamsContext = createContext<ParamsContextValue<any>>({
   params: {},
 })
 
-interface ParamsProviderProps<T extends string> {
+export interface ParamsProviderProps<T extends string> {
   children: React.ReactNode
   route: Route<T>
 }
@@ -41,3 +39,5 @@ export function ParamsProvider<T extends string>({
     <ParamsContext.Provider value={value}>{children}</ParamsContext.Provider>
   )
 }
+
+ParamsProvider.displayName = 'Params.Provider'

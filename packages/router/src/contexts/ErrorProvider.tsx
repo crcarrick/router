@@ -1,6 +1,6 @@
 import { createContext, useMemo, useState } from 'react'
 
-interface ErrorContextValue {
+export interface ErrorContextValue {
   asyncError: unknown
   routeError: unknown
   setAsyncError: React.Dispatch<React.SetStateAction<unknown>>
@@ -14,7 +14,7 @@ export const ErrorContext = createContext<ErrorContextValue>({
   setRouteError: () => {},
 })
 
-interface ErrorProviderProps {
+export interface ErrorProviderProps {
   children: React.ReactNode
 }
 
@@ -29,3 +29,5 @@ export function ErrorProvider({ children }: ErrorProviderProps) {
 
   return <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>
 }
+
+ErrorProvider.displayName = 'Error.Provider'

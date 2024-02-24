@@ -11,7 +11,7 @@ import type { PathParams, Route } from '../types.js'
 
 import { RouteDataLoaderContext } from './RouteLoaderDataProvider.js'
 
-interface LoaderDataContextValue {
+export interface LoaderDataContextValue {
   loaderData: unknown
 }
 
@@ -19,7 +19,7 @@ export const LoaderDataContext = createContext<LoaderDataContextValue>({
   loaderData: undefined,
 })
 
-interface LoaderDataProviderProps<T extends string> {
+export interface LoaderDataProviderProps<T extends string> {
   children: React.ReactNode
   route: Route<T>
 }
@@ -29,20 +29,21 @@ export function LoaderDataProvider<T extends string>({
   route,
 }: LoaderDataProviderProps<T>) {
   const { addLoaderEntry } = useContext(RouteDataLoaderContext)
-  const params = useParams()
+  const params = useParams<PathParams<T>>()
 
+  const [error, setError] = useState<unknown>()
   const [loaderData, setLoaderData] =
     useState<LoaderDataContextValue['loaderData']>(undefined)
 
   useLayoutEffect(() => {
     if (route.loader) {
-      Promise.resolve(route.loader(params as PathParams<T>)).then(
+      Promise.resolve(route.loader(params)).then(
         (data) => {
           addLoaderEntry(route, data)
           setLoaderData(data)
         },
         (error) => {
-          throw error
+          setError(error)
         },
       )
     }
@@ -53,9 +54,15 @@ export function LoaderDataProvider<T extends string>({
     [loaderData],
   )
 
+  if (error) {
+    throw error
+  }
+
   return (
     <LoaderDataContext.Provider value={value}>
       {children}
     </LoaderDataContext.Provider>
   )
 }
+
+LoaderDataProvider.displayName = 'LoaderData.Provider'

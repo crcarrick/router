@@ -14,7 +14,7 @@ import { renderMatches } from '../utils/renderMatches.js'
 
 import { RouteDataLoaderProvider } from './RouteLoaderDataProvider.js'
 
-interface NavigateOptions {
+export interface NavigateOptions {
   replace?: boolean
   state?: any
 }
@@ -23,7 +23,7 @@ export interface NavigateFunction {
   (to: string, options?: NavigateOptions): void
 }
 
-interface RouterContextValue {
+export interface RouterContextValue {
   location: Location
   navigate: NavigateFunction
 }
@@ -77,7 +77,7 @@ export function RouterProvider<T extends string>({
 
   const { Route } = useMemo(() => {
     const route = matchRoutes(router.routes, location.pathname)
-    const Route = route ? renderMatches(route, location.pathname) : null
+    const Route = route ? renderMatches(route) : null
     return { route, Route }
   }, [router.routes, location.pathname])
 
@@ -91,3 +91,5 @@ export function RouterProvider<T extends string>({
     <div>Not found</div>
   )
 }
+
+RouterProvider.displayName = 'Router.Provider'

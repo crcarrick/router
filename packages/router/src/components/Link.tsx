@@ -2,7 +2,7 @@ import { startTransition } from 'react'
 
 import { useNavigate } from '../hooks/useNavigate.js'
 
-interface LinkProps {
+export interface LinkProps {
   to: string
   children: React.ReactNode
 }

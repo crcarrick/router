@@ -2,7 +2,7 @@ import { createContext, useCallback, useMemo, useState } from 'react'
 
 import { Route } from '../types.js'
 
-interface RouteDataLoaderContextValue {
+export interface RouteDataLoaderContextValue {
   entries: Map<string, unknown>
   addLoaderEntry: <T extends string>(
     route: Route<T>,
@@ -16,7 +16,7 @@ export const RouteDataLoaderContext =
     addLoaderEntry: () => {},
   })
 
-interface RouteDataLoaderProviderProps {
+export interface RouteDataLoaderProviderProps {
   children: React.ReactNode
 }
 
@@ -49,3 +49,5 @@ export function RouteDataLoaderProvider({
     </RouteDataLoaderContext.Provider>
   )
 }
+
+RouteDataLoaderProvider.displayName = 'RouteDataLoader.Provider'

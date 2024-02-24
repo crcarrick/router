@@ -28,7 +28,7 @@ function createResource<T>(deferred: Deferred<T>): Resource<T> {
         case 'resolved':
           return deferred.value as T
         case 'rejected':
-          throw deferred.error
+          throw deferred.error as Error
       }
     },
   }

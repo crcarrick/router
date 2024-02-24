@@ -17,7 +17,8 @@
     "examples:start:01_basics": "pnpm run --filter 01_basics start",
     "examples:start:02_loader": "pnpm run --filter 02_loader start",
     "examples:start:03_outlet": "pnpm run --filter 03_outlet start",
-    "examples:start:04_defers": "pnpm run --filter 04_defers start"
+    "examples:start:04_defers": "pnpm run --filter 04_defers start",
+    "examples:start:05_errors": "pnpm run --filter 05_errors start"
   },
   "keywords": [],
   "author": "",

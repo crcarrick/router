@@ -1,6 +1,5 @@
 import {
   createBrowserRouter,
-  createRoute,
   RouterProvider,
 } from '@crcarrick/router'
 
@@ -9,10 +8,10 @@ function Home() {
 }
 
 const router = createBrowserRouter([
-  createRoute({
+  {
     path: '/',
-    component: Home, 
-  })
+    element: <Home />, 
+  }
 ])
 
 export default function App() {

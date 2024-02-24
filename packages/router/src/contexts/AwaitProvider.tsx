@@ -1,4 +1,4 @@
-import { createContext, useMemo } from 'react'
+import React, { createContext, useMemo } from 'react'
 
 import type { Resource } from '../utils/defer.js'
 
@@ -13,7 +13,6 @@ export const AwaitContext = createContext<AwaitContextValue<unknown>>({
 interface AwaitProviderProps<T> {
   children: React.ReactNode
   resolve: Resource<T>
-  errorElement?: React.ReactNode
 }
 
 export function AwaitProvider<T>({ children, resolve }: AwaitProviderProps<T>) {
@@ -22,3 +21,5 @@ export function AwaitProvider<T>({ children, resolve }: AwaitProviderProps<T>) {
 
   return <AwaitContext.Provider value={value}>{children}</AwaitContext.Provider>
 }
+
+AwaitProvider.displayName = 'Await.Provider'
