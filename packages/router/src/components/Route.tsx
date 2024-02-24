@@ -1,8 +1,8 @@
 import { RouteObject } from '../types.js'
 
-export interface RouteProps<T extends string> extends RouteObject<T> {}
+export interface RouteProps extends RouteObject {}
 
-export function Route<T extends string>(_props: RouteProps<T>) {
+export function Route(_props: RouteProps) {
   // ... TODO
   return null
 }
