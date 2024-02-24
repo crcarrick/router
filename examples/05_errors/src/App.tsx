@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   defer,
   Link,
+  Outlet,
   RouterProvider,
   useAsyncError,
   useLoaderData,
@@ -15,9 +16,10 @@ import { Suspense } from 'react'
 function Layout() {
   return (
     <div>
-      <h1>Errors</h1>
+      <h1>05_errors</h1>
       <Link to="/async-error">Async Error</Link>
       <Link to="/route-error">Route Error</Link>
+      <Outlet />
     </div>
   )
 }

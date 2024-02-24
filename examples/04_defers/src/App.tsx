@@ -27,8 +27,8 @@ function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
-      <Suspense fallback={<div>Awaiting foo...</div>}>
+      <h1>04_defers</h1>
+      <Suspense fallback={<div>Never shows...</div>}>
         <Await resolve={data.foo}>
           <Foo />
         </Await>
@@ -38,7 +38,7 @@ function Home() {
           <Bar />
         </Await>
       </Suspense>
-      <Suspense fallback={<div>Awaiting baz...</div>}>
+      <Suspense fallback={<div>Never shows...</div>}>
         <Await resolve={data.baz}>
           <Baz />
         </Await>

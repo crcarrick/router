@@ -1,11 +1,12 @@
 import { createBrowserHistory } from 'history'
 
 import type { BrowserRouter, Route, RouteObject } from './types.js'
-import { hashString } from './utils/hashString.js'
 import { join } from './utils/join.js'
 
+let currentId = 0
+
 export function createRoute(route: RouteObject, previous = ''): Route {
-  const id = route.id ? route.id : hashString(route.path)
+  const id = route.id ? route.id : `${++currentId}`
   const full = join(previous, route.path)
 
   return (
