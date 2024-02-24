@@ -28,6 +28,9 @@ pnpm watch
 
 ## Examples
 
+You should be able to swap the import in `App.tsx` for any given example from `@crcarrick/router` to `react-router-dom` and see (almost)
+the same behavior for any features marked with a ✅ below.
+
 #### Create example
 
 ```shell
@@ -70,7 +73,6 @@ pnpm examples:start:01_basic
 - Await ✅
 - Form
 - Link ✅
-- Link (RN)
 - NavLink
 - Navigate
 - Outlet ✅
@@ -105,8 +107,7 @@ pnpm examples:start:01_basic
 - useRouteError ✅
 - useRouteLoaderData ✅
 - useRoutes
-- useSearchParams
-- useSearchParams (RN)
+- useSearchParams ✅
 - useSubmit
 - unstable_useViewTransitionState
 - json

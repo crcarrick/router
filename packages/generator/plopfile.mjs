@@ -11,6 +11,8 @@ const PACKAGES = /** @type {const} */ ([
   '@vitejs/plugin-react',
   'react',
   'react-dom',
+  'react-router',
+  'react-router-dom',
   'typescript',
   'vite',
 ])
@@ -113,6 +115,11 @@ export default function (
               { name: '@crcarrick/example-utils', version: 'workspace:*' },
               { name: 'react', version: versions['react'] },
               { name: 'react-dom', version: versions['react-dom'] },
+              { name: 'react-router', version: versions['react-router'] },
+              {
+                name: 'react-router-dom',
+                version: versions['react-router-dom'],
+              },
             ],
             devDependencies: [
               { name: '@types/node', version: versions['@types/node'] },

@@ -20,7 +20,9 @@
     "@crcarrick/example-utils": "workspace:*",
     "@crcarrick/router": "workspace:*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router": "^6.22.1",
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.20",
