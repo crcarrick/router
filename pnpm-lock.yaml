@@ -54,6 +54,46 @@ importers:
         specifier: 5.4.0-beta
         version: 5.4.0-beta
 
+  examples/00_playground:
+    dependencies:
+      '@crcarrick/example-utils':
+        specifier: workspace:*
+        version: link:../../packages/example-utils
+      '@crcarrick/router':
+        specifier: workspace:*
+        version: link:../../packages/router
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-router:
+        specifier: ^6.22.1
+        version: 6.22.1(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.22.1
+        version: 6.22.1(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.11.20
+        version: 20.11.20
+      '@types/react':
+        specifier: ^18.2.58
+        version: 18.2.58
+      '@types/react-dom':
+        specifier: ^18.2.19
+        version: 18.2.19
+      '@vitejs/plugin-react':
+        specifier: ^4.2.1
+        version: 4.2.1(vite@5.1.4)
+      typescript:
+        specifier: ^5.4.0-beta
+        version: 5.4.0-beta
+      vite:
+        specifier: ^5.1.4
+        version: 5.1.4(@types/node@20.11.20)
+
   examples/01_basics:
     dependencies:
       '@crcarrick/example-utils':
@@ -1131,7 +1171,7 @@ packages:
   /@types/react-dom@18.2.19:
     resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
     dependencies:
-      '@types/react': 18.2.57
+      '@types/react': 18.2.58
     dev: true
 
   /@types/react@18.2.57:
