@@ -6,7 +6,7 @@ import { join } from './utils/join.js'
 let currentId = 0
 
 export function createRoute(route: RouteObject, previous = ''): Route {
-  const id = route.id ? route.id : `${++currentId}`
+  const id = route.id ? route.id : `${currentId++}`
   const full = join(previous, route.path)
 
   return (
