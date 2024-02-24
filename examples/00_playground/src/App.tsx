@@ -1,4 +1,5 @@
 import { createBrowserRouter, Outlet, RouterProvider } from '@crcarrick/router'
+// import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 
 function Layout() {
   return (
@@ -14,6 +15,14 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
+      {
+        index: true,
+        element: (
+          <div>
+            <h2>Hm</h2>
+          </div>
+        ),
+      },
       {
         path: 'posts',
         element: (
@@ -32,6 +41,10 @@ const router = createBrowserRouter([
               </div>
             ),
             children: [
+              {
+                index: true,
+                element: <h3>Index</h3>,
+              },
               {
                 path: 'edit',
                 element: <h3>Edit</h3>,

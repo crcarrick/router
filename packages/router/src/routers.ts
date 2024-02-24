@@ -7,7 +7,7 @@ let currentId = 0
 
 export function createRoute(route: RouteObject, previous = ''): Route {
   const id = route.id ? route.id : `${currentId++}`
-  const full = join(previous, route.path)
+  const full = join(previous, route.path ?? '')
 
   return (
     route.children
@@ -17,7 +17,7 @@ export function createRoute(route: RouteObject, previous = ''): Route {
           full,
           children: route.children.map((child) => createRoute(child, full)),
         }
-      : { ...route, id, full }
+      : { ...route, id, full, children: [] }
   ) as Route
 }
 

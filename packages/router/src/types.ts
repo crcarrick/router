@@ -32,8 +32,8 @@ type RouteComponent = React.ComponentType<RouteComponentProps>
 
 export type RouteObject = {
   id?: string
-  path: string
-  exact?: boolean
+  path?: string
+  index?: boolean
   loader?: LoaderFunction
   handle?: Record<string, unknown>
   element?: React.ReactNode
