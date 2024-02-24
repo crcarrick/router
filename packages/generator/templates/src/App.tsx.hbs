@@ -1,16 +1,22 @@
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from '@crcarrick/router'
 
-function Home() {
-  return <h1>Home</h1>
+function Layout() {
+  return (
+    <div>
+      <h1>{{{name}}}</h1>
+      <Outlet />
+    </div>
+  )
 }
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />, 
+    element: <Layout />, 
   }
 ])
 

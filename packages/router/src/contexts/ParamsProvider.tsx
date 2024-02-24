@@ -1,7 +1,6 @@
 import { createContext, useContext, useMemo } from 'react'
 
-import { useLocation } from '../hooks/useLocation.js'
-import type { Params, Route } from '../types.js'
+import type { Params } from '../types.js'
 
 export interface ParamsContextValue {
   params: Params<any> | {}
@@ -13,24 +12,20 @@ export const ParamsContext = createContext<ParamsContextValue>({
 
 export interface ParamsProviderProps {
   children: React.ReactNode
-  route: Route
+  params: Params<any>
 }
 
-export function ParamsProvider({ children, route }: ParamsProviderProps) {
+export function ParamsProvider({ children, params }: ParamsProviderProps) {
   const parent = useContext(ParamsContext).params
-  const location = useLocation()
 
   const value = useMemo<ParamsContextValue>(() => {
-    const matched = route.matcher(location.pathname)
-    const params = matched ? matched.params : {}
-
     return {
       params: {
         ...parent,
         ...params,
       },
     }
-  }, [location, parent, route])
+  }, [parent, params])
 
   return (
     <ParamsContext.Provider value={value}>{children}</ParamsContext.Provider>

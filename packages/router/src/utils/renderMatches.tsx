@@ -1,6 +1,10 @@
 import { Render } from '../components/Render.js'
-import type { Route } from '../types.js'
+import type { RouteMatch } from '../types.js'
 
-export function renderMatches(route: Route) {
-  return <Render route={route} />
+export function renderMatches(matches: RouteMatch[]) {
+  const match = matches[0]
+
+  if (!match) return null
+
+  return <Render match={match} matches={matches} />
 }

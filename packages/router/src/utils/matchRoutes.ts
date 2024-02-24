@@ -1,25 +1,30 @@
-import type { Route } from '../types.js'
+import type { Route, RouteMatch } from '../types.js'
 
-export function matchRoutes(routes: Route[], pathname: string): Route | null {
+import { matchPath } from './matchPath.js'
+
+export function matchRoutes(routes: Route[], pathname: string): RouteMatch[] {
   for (const route of routes) {
-    const matched = route.matcher(pathname)
-    if (matched) {
-      return {
-        ...route,
-        children: [],
+    const pathMatch = matchPath(route.full, pathname)
+    if (pathMatch !== null) {
+      const match = {
+        params: pathMatch.params,
+        pathname: pathMatch.pathname,
+        route,
       }
+      return [match]
     }
-
     if (route.children) {
       const result = matchRoutes(route.children, pathname)
-      if (result) {
-        return {
-          ...route,
-          children: [result],
+      if (result.length) {
+        const match = {
+          params: {},
+          pathname,
+          route,
         }
+        return [match, ...result]
       }
     }
   }
 
-  return null
+  return []
 }

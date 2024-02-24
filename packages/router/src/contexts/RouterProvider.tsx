@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 
-import type { BrowserRouter } from '../types.js'
+import type { BrowserRouter, RouteMatch } from '../types.js'
 import { matchRoutes } from '../utils/matchRoutes.js'
 import { renderMatches } from '../utils/renderMatches.js'
 
@@ -25,12 +25,11 @@ export interface NavigateFunction {
 
 export interface RouterContextValue {
   navigate: NavigateFunction
-  // state: {
-  // matches: Match<any>[]
+  matches: RouteMatch[]
   location: Location
-  // }
 }
 
+const DEFAULT_MATCHES: RouteMatch[] = []
 const DEFAULT_NAVIGATE: NavigateFunction = () => {}
 const DEFAULT_LOCATION: Location = {
   hash: '',
@@ -41,6 +40,7 @@ const DEFAULT_LOCATION: Location = {
 }
 
 export const RouterContext = createContext<RouterContextValue>({
+  matches: DEFAULT_MATCHES,
   location: DEFAULT_LOCATION,
   navigate: DEFAULT_NAVIGATE,
 })
@@ -70,19 +70,20 @@ export function RouterProvider({
     [router.history],
   )
 
+  const { matches, Route } = useMemo(() => {
+    const matches = matchRoutes(router.routes, location.pathname)
+    const Route = matches ? renderMatches(matches) : null
+    return { matches, Route }
+  }, [router.routes, location.pathname])
+
   const value = useMemo<RouterContextValue>(
     () => ({
+      matches,
       location,
       navigate,
     }),
-    [location, navigate],
+    [matches, location, navigate],
   )
-
-  const { Route } = useMemo(() => {
-    const route = matchRoutes(router.routes, location.pathname)
-    const Route = route ? renderMatches(route) : null
-    return { route, Route }
-  }, [router.routes, location.pathname])
 
   return Route ? (
     <Suspense fallback={fallbackElement ?? <div>Loading...</div>}>

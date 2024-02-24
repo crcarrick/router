@@ -4,16 +4,22 @@ import { ErrorProvider } from '../contexts/ErrorProvider.js'
 import { LoaderDataProvider } from '../contexts/LoaderDataProvider.js'
 import { OutletProvider } from '../contexts/OutletProvider.js'
 import { ParamsProvider } from '../contexts/ParamsProvider.js'
-import type { Route } from '../types.js'
+import type { RouteMatch } from '../types.js'
 import { invariant } from '../utils/invariant.js'
 
 import { RouteErrorBoundary } from './RouteErrorBoundary.js'
 
 export interface RenderProps {
-  route: Route
+  match: RouteMatch
+  matches: RouteMatch[]
 }
 
-export function Render({ route }: RenderProps) {
+export function Render({ matches }: RenderProps) {
+  const [match, ...rest] = matches
+
+  if (!match) return null
+
+  const route = match.route
   const hasElement = route.element !== undefined
   const hasComponent = route.Component !== undefined
 
@@ -39,10 +45,10 @@ export function Render({ route }: RenderProps) {
 
   return (
     <ErrorProvider>
-      <ParamsProvider route={route}>
+      <ParamsProvider params={match.params}>
         <RouteErrorBoundary errorElement={ErrorComponent}>
           <LoaderDataProvider route={route}>
-            <OutletProvider route={route}>{Component}</OutletProvider>
+            <OutletProvider matches={rest}>{Component}</OutletProvider>
           </LoaderDataProvider>
         </RouteErrorBoundary>
       </ParamsProvider>

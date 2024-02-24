@@ -33,6 +33,7 @@ type RouteComponent = React.ComponentType<RouteComponentProps>
 export type RouteObject = {
   id?: string
   path: string
+  exact?: boolean
   loader?: LoaderFunction
   handle?: Record<string, unknown>
   element?: React.ReactNode
@@ -46,7 +47,6 @@ interface RouteAdditions {
   id: string
   full: string
   children: Route[]
-  matcher: MatchFunction<{}>
 }
 
 export type Route = Branded<O.Merge<RouteAdditions, RouteObject>, 'RouteObject'>
@@ -67,5 +67,20 @@ export type LoaderData<T extends (...args: any[]) => any> =
 export interface Match {
   route: Route
   params: Params<any>
+  pathname: string
+}
+
+export interface PathMatch<T extends string> {
+  params: PathParams<T>
+  pathname: string
+  pattern: {
+    path: T
+    matcher: MatchFunction<PathParams<T>>
+  }
+}
+
+export interface RouteMatch {
+  route: Route
+  params: PathParams<string>
   pathname: string
 }

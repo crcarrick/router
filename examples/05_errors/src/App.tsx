@@ -12,7 +12,7 @@ import {
 } from '@crcarrick/router'
 import { Suspense } from 'react'
 
-function Home() {
+function Layout() {
   return (
     <div>
       <h1>Errors</h1>
@@ -75,18 +75,20 @@ function RouteErrorElement() {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/async-error',
-    element: <AsyncError />,
-    loader: asyncErrorLoader,
-  },
-  {
-    path: '/route-error',
-    element: <RouteError />,
-    errorElement: <RouteErrorElement />,
-    loader: routeErrorLoader,
+    element: <Layout />,
+    children: [
+      {
+        path: 'async-error',
+        element: <AsyncError />,
+        loader: asyncErrorLoader,
+      },
+      {
+        path: 'route-error',
+        element: <RouteError />,
+        errorElement: <RouteErrorElement />,
+        loader: routeErrorLoader,
+      },
+    ],
   },
 ])
 

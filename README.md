@@ -93,8 +93,8 @@ pnpm examples:start:01_basic
 - useLinkPressHandler
 - useLoaderData ✅
 - useLocation ✅
-- useMatch
-- useMatches
+- useMatch ✅
+- useMatches ✅
 - useNavigate ✅
 - useNavigation
 - useNavigationType

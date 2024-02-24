@@ -1,25 +1,22 @@
 import { createContext, useMemo } from 'react'
 
-import type { Route } from '../types.js'
+import type { RouteMatch } from '../types.js'
 
 export interface OutletContextValue {
-  route: Route | undefined
+  matches: RouteMatch[] | undefined
 }
 
 export const OutletContext = createContext<OutletContextValue>({
-  route: undefined,
+  matches: undefined,
 })
 
 export interface OutletProviderProps {
   children: React.ReactNode
-  route: Route
+  matches: RouteMatch[]
 }
 
-export function OutletProvider({ children, route }: OutletProviderProps) {
-  const value = useMemo<OutletContextValue>(
-    () => ({ route: route.children?.[0] }),
-    [route],
-  )
+export function OutletProvider({ children, matches }: OutletProviderProps) {
+  const value = useMemo<OutletContextValue>(() => ({ matches }), [matches])
 
   return (
     <OutletContext.Provider value={value}>{children}</OutletContext.Provider>
