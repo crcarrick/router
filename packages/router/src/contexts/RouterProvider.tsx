@@ -24,8 +24,11 @@ export interface NavigateFunction {
 }
 
 export interface RouterContextValue {
-  location: Location
   navigate: NavigateFunction
+  // state: {
+  // matches: Match<any>[]
+  location: Location
+  // }
 }
 
 const DEFAULT_NAVIGATE: NavigateFunction = () => {}
@@ -42,15 +45,15 @@ export const RouterContext = createContext<RouterContextValue>({
   navigate: DEFAULT_NAVIGATE,
 })
 
-interface RouterProviderProps<T extends string> {
-  router: BrowserRouter<T>
+interface RouterProviderProps {
+  router: BrowserRouter
   fallbackElement?: React.ReactNode
 }
 
-export function RouterProvider<T extends string>({
+export function RouterProvider({
   router,
   fallbackElement,
-}: RouterProviderProps<T>) {
+}: RouterProviderProps) {
   const [location, setLocation] = useState<Location>(
     window.location as unknown as Location,
   )

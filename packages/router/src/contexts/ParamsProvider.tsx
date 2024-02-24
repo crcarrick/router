@@ -3,27 +3,24 @@ import { createContext, useContext, useMemo } from 'react'
 import { useLocation } from '../hooks/useLocation.js'
 import type { Params, Route } from '../types.js'
 
-export interface ParamsContextValue<T> {
-  params: Params<T> | {}
+export interface ParamsContextValue {
+  params: Params<any> | {}
 }
 
-export const ParamsContext = createContext<ParamsContextValue<any>>({
+export const ParamsContext = createContext<ParamsContextValue>({
   params: {},
 })
 
-export interface ParamsProviderProps<T extends string> {
+export interface ParamsProviderProps {
   children: React.ReactNode
-  route: Route<T>
+  route: Route
 }
 
-export function ParamsProvider<T extends string>({
-  children,
-  route,
-}: ParamsProviderProps<T>) {
+export function ParamsProvider({ children, route }: ParamsProviderProps) {
   const parent = useContext(ParamsContext).params
   const location = useLocation()
 
-  const value = useMemo<ParamsContextValue<T>>(() => {
+  const value = useMemo<ParamsContextValue>(() => {
     const matched = route.matcher(location.pathname)
     const params = matched ? matched.params : {}
 

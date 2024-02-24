@@ -1,9 +1,6 @@
 import type { Route } from '../types.js'
 
-export function matchRoutes<T extends string>(
-  routes: Route<T>[],
-  pathname: string,
-): Route<T> | null {
+export function matchRoutes(routes: Route[], pathname: string): Route | null {
   for (const route of routes) {
     const matched = route.matcher(pathname)
     if (matched) {

@@ -7,7 +7,7 @@ import {
 } from 'react'
 
 import { useParams } from '../hooks/useParams.js'
-import type { PathParams, Route } from '../types.js'
+import type { Route } from '../types.js'
 
 import { RouteDataLoaderContext } from './RouteLoaderDataProvider.js'
 
@@ -19,17 +19,17 @@ export const LoaderDataContext = createContext<LoaderDataContextValue>({
   loaderData: undefined,
 })
 
-export interface LoaderDataProviderProps<T extends string> {
+export interface LoaderDataProviderProps {
   children: React.ReactNode
-  route: Route<T>
+  route: Route
 }
 
-export function LoaderDataProvider<T extends string>({
+export function LoaderDataProvider({
   children,
   route,
-}: LoaderDataProviderProps<T>) {
+}: LoaderDataProviderProps) {
   const { addLoaderEntry } = useContext(RouteDataLoaderContext)
-  const params = useParams<PathParams<T>>()
+  const params = useParams()
 
   const [error, setError] = useState<unknown>()
   const [loaderData, setLoaderData] =

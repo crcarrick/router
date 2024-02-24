@@ -3,22 +3,19 @@ import { createContext, useMemo } from 'react'
 import type { Route } from '../types.js'
 
 export interface OutletContextValue {
-  route: Route<any> | undefined
+  route: Route | undefined
 }
 
 export const OutletContext = createContext<OutletContextValue>({
   route: undefined,
 })
 
-export interface OutletProviderProps<T extends string> {
+export interface OutletProviderProps {
   children: React.ReactNode
-  route: Route<T>
+  route: Route
 }
 
-export function OutletProvider<T extends string>({
-  children,
-  route,
-}: OutletProviderProps<T>) {
+export function OutletProvider({ children, route }: OutletProviderProps) {
   const value = useMemo<OutletContextValue>(
     () => ({ route: route.children?.[0] }),
     [route],

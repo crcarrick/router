@@ -4,10 +4,7 @@ import { Route } from '../types.js'
 
 export interface RouteDataLoaderContextValue {
   entries: Map<string, unknown>
-  addLoaderEntry: <T extends string>(
-    route: Route<T>,
-    loaderData: unknown,
-  ) => void
+  addLoaderEntry: (route: Route, loaderData: unknown) => void
 }
 
 export const RouteDataLoaderContext =
@@ -27,16 +24,13 @@ export function RouteDataLoaderProvider({
     RouteDataLoaderContextValue['entries']
   >(new Map())
 
-  const addLoaderEntry = useCallback(
-    <T extends string>(route: Route<T>, loaderData: unknown) => {
-      setEntries((prevEntries) => {
-        const nextEntries = new Map(prevEntries)
-        nextEntries.set(route.id, loaderData)
-        return nextEntries
-      })
-    },
-    [],
-  )
+  const addLoaderEntry = useCallback((route: Route, loaderData: unknown) => {
+    setEntries((prevEntries) => {
+      const nextEntries = new Map(prevEntries)
+      nextEntries.set(route.id, loaderData)
+      return nextEntries
+    })
+  }, [])
 
   const value = useMemo(
     () => ({ entries, addLoaderEntry }),

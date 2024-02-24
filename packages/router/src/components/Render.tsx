@@ -9,11 +9,11 @@ import { invariant } from '../utils/invariant.js'
 
 import { RouteErrorBoundary } from './RouteErrorBoundary.js'
 
-export interface RenderProps<T extends string> {
-  route: Route<T>
+export interface RenderProps {
+  route: Route
 }
 
-export function Render<T extends string>({ route }: RenderProps<T>) {
+export function Render({ route }: RenderProps) {
   const hasElement = route.element !== undefined
   const hasComponent = route.Component !== undefined
 

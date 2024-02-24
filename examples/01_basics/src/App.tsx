@@ -1,10 +1,16 @@
-import { createBrowserRouter, Link, RouterProvider } from '@crcarrick/router'
+import {
+  createBrowserRouter,
+  Link,
+  Outlet,
+  RouterProvider,
+} from 'react-router-dom'
 
 function Home() {
   return (
     <div>
       <h1>Home</h1>
       <Link to="/about">About</Link>
+      <Outlet />
     </div>
   )
 }
@@ -22,6 +28,32 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    children: [
+      {
+        path: 'posts',
+        element: (
+          <div>
+            Posts <Outlet />
+          </div>
+        ),
+        children: [
+          {
+            path: ':id',
+            element: (
+              <div>
+                Post <Outlet />
+              </div>
+            ),
+            children: [
+              {
+                path: 'edit',
+                element: <div>Edit</div>,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     path: '/about',

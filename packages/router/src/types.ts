@@ -22,41 +22,38 @@ export type PathParams<T extends string> =
     : {}
 export type Params<T> = Readonly<Partial<T>>
 
-export interface Loader<T extends string> {
-  (params: PathParams<T>): unknown
+export interface LoaderFunction {
+  (params: Params<any>): unknown
 }
 
 interface RouteComponentProps {}
 
 type RouteComponent = React.ComponentType<RouteComponentProps>
 
-export type RouteObject<T extends string> = {
+export type RouteObject = {
   id?: string
-  path: T
-  loader?: Loader<T>
+  path: string
+  loader?: LoaderFunction
   handle?: Record<string, unknown>
   element?: React.ReactNode
   Component?: RouteComponent
   errorElement?: React.ReactElement
   ErrorBoundary?: React.ComponentType
-  children?: RouteObject<any>[]
+  children?: RouteObject[]
 }
 
 interface RouteAdditions {
   id: string
   full: string
-  children: Route<any>[]
+  children: Route[]
   matcher: MatchFunction<{}>
 }
 
-export type Route<T extends string> = Branded<
-  O.Merge<RouteAdditions, RouteObject<T>>,
-  'RouteObject'
->
+export type Route = Branded<O.Merge<RouteAdditions, RouteObject>, 'RouteObject'>
 
-export type BrowserRouter<T extends string> = Branded<
+export type BrowserRouter = Branded<
   {
-    routes: Array<Route<T>>
+    routes: Route[]
     history: BrowserHistory
   },
   'BrowserRouter'
@@ -66,3 +63,9 @@ export type LoaderData<T extends (...args: any[]) => any> =
   ReturnType<T> extends Promise<infer U>
     ? U | undefined
     : ReturnType<T> | undefined
+
+export interface Match {
+  route: Route
+  params: Params<any>
+  pathname: string
+}
