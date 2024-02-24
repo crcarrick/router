@@ -3,7 +3,7 @@ import {
   Link,
   Outlet,
   RouterProvider,
-} from 'react-router-dom'
+} from '@crcarrick/router'
 
 function Home() {
   return (
@@ -28,32 +28,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-    children: [
-      {
-        path: 'posts',
-        element: (
-          <div>
-            Posts <Outlet />
-          </div>
-        ),
-        children: [
-          {
-            path: ':id',
-            element: (
-              <div>
-                Post <Outlet />
-              </div>
-            ),
-            children: [
-              {
-                path: 'edit',
-                element: <div>Edit</div>,
-              },
-            ],
-          },
-        ],
-      },
-    ],
   },
   {
     path: '/about',
