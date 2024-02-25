@@ -72,7 +72,7 @@ export function RouterProvider({
 
   const { matches, Route } = useMemo(() => {
     const matches = matchRoutes(router.routes, location.pathname)
-    const Route = matches ? renderMatches(matches) : null
+    const Route = renderMatches(matches)
     return { matches, Route }
   }, [router.routes, location.pathname])
 

@@ -106,7 +106,7 @@ pnpm examples:start:01_basic
 - useRevalidator
 - useRouteError ✅
 - useRouteLoaderData ✅
-- useRoutes
+- useRoutes ✅
 - useSearchParams ✅
 - useSubmit
 - unstable_useViewTransitionState
