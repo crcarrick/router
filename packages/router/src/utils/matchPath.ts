@@ -13,7 +13,9 @@ export function matchPath<T extends string>(
   path: T,
   pathname: string,
 ): PathMatch<T> | null {
-  const matcher = match<PathParams<T>>(path)
+  const matcher = match<PathParams<T>>(
+    path.replace(/(^|\/)\*(\/|$)/, '$1(.*)$2'),
+  )
   const matched = matcher(pathname)
   if (matched === false) {
     return null
