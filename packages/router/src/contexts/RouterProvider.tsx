@@ -24,11 +24,13 @@ export interface NavigateFunction {
 }
 
 export interface RouterContextValue {
-  navigate: NavigateFunction
+  router: BrowserRouter
   matches: RouteMatch[]
   location: Location
+  navigate: NavigateFunction
 }
 
+const DEFAULT_ROUTER = {} as BrowserRouter
 const DEFAULT_MATCHES: RouteMatch[] = []
 const DEFAULT_NAVIGATE: NavigateFunction = () => {}
 const DEFAULT_LOCATION: Location = {
@@ -40,6 +42,7 @@ const DEFAULT_LOCATION: Location = {
 }
 
 export const RouterContext = createContext<RouterContextValue>({
+  router: DEFAULT_ROUTER,
   matches: DEFAULT_MATCHES,
   location: DEFAULT_LOCATION,
   navigate: DEFAULT_NAVIGATE,
@@ -78,11 +81,12 @@ export function RouterProvider({
 
   const value = useMemo<RouterContextValue>(
     () => ({
+      router,
       matches,
       location,
       navigate,
     }),
-    [matches, location, navigate],
+    [router, matches, location, navigate],
   )
 
   return Route ? (

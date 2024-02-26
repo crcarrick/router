@@ -97,9 +97,9 @@ pnpm examples:start:01_basic
 - useMatches ✅
 - useNavigate ✅
 - useNavigation
-- useNavigationType
+- useNavigationType ✅
 - useOutlet ✅
-- useOutletContext
+- useOutletContext ✅
 - useParams ✅
 - unstable_usePrompt
 - useResolvedPath
