@@ -6,6 +6,8 @@ import { useNavigate } from '../hooks/useNavigate.js'
 export interface NavLinkStyleArgs {
   isActive: boolean
   isPending: boolean
+  // TODO: this is basically just a proxy for isPending, but it's maybe
+  //       supposed to be different?
   isTransitioning: boolean
 }
 
@@ -20,8 +22,8 @@ export interface NavLinkProps
   > {
   to: string
   children: React.ReactNode
-  className: string | NavLinkStyleFunction<string>
-  style: React.CSSProperties | NavLinkStyleFunction<React.CSSProperties>
+  className?: string | NavLinkStyleFunction<string>
+  style?: React.CSSProperties | NavLinkStyleFunction<React.CSSProperties>
 }
 
 export function NavLink({
@@ -37,7 +39,7 @@ export function NavLink({
   const location = useLocation()
   const navigate = useNavigate()
 
-  const isActive = location.pathname === to
+  const isActive = location.pathname === to && !isPending
 
   const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
     event.preventDefault()
