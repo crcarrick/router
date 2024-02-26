@@ -88,7 +88,7 @@ pnpm examples:start:01_basic
 - useFetchers
 - useFormAction
 - useHref
-- useInRouterContext
+- useInRouterContext ✅
 - useLinkClickHandler
 - useLinkPressHandler
 - useLoaderData ✅
