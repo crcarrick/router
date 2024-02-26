@@ -6,6 +6,7 @@ import {
   redirect,
   redirectDocument,
   useLoaderData,
+  useOutletContext,
 } from '@crcarrick/router'
 // import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 
@@ -65,18 +66,23 @@ const router = createBrowserRouter([
         element: (
           <div>
             <h1>Posts</h1>
-            <Outlet />
+            <Outlet context={{ message: 'Hello from outlet context' }} />
           </div>
         ),
         children: [
           {
             path: ':id',
-            element: (
-              <div>
-                <h2>Post</h2>
-                <Outlet />
-              </div>
-            ),
+            Component() {
+              const context = useOutletContext<{ message: string }>()
+
+              return (
+                <div>
+                  <h2>Post</h2>
+                  <p>{context.message}</p>
+                  <Outlet />
+                </div>
+              )
+            },
             children: [
               {
                 index: true,

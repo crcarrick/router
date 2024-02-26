@@ -2,12 +2,12 @@ import React from 'react'
 
 import { ErrorContext } from '../contexts/ErrorProvider.js'
 
-interface AsyncErrorBoundaryProps {
+export interface AsyncErrorBoundaryProps {
   children: React.ReactNode
   errorElement?: React.ReactNode
 }
 
-interface AsyncErrorBoundaryState {
+export interface AsyncErrorBoundaryState {
   hasError: boolean
   error: Error | null
 }

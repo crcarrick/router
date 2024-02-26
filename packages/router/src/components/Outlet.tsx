@@ -1,6 +1,14 @@
+import { OutletContextProvider } from '../contexts/OutletContextProvider.js'
 import { useOutlet } from '../hooks/useOutlet.js'
 
-export function Outlet() {
-  const outlet = useOutlet()
-  return outlet
+export interface OutletProps {
+  context?: unknown
+}
+
+export function Outlet({ context }: OutletProps) {
+  return (
+    <OutletContextProvider context={context}>
+      {useOutlet()}
+    </OutletContextProvider>
+  )
 }

@@ -2,12 +2,12 @@ import React from 'react'
 
 import { ErrorContext } from '../contexts/ErrorProvider.js'
 
-interface RouteErrorBoundaryProps {
+export interface RouteErrorBoundaryProps {
   children: React.ReactNode
   errorElement?: React.ReactNode
 }
 
-interface RouteErrorBoundaryState {
+export interface RouteErrorBoundaryState {
   hasError: boolean
   error: Error | null
 }
