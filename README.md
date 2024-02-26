@@ -111,8 +111,8 @@ pnpm examples:start:01_basic
 - useSubmit
 - unstable_useViewTransitionState
 - json ✅
-- redirect
-- redirectDocument
+- redirect ✅
+- redirectDocument ✅
 - createRoutesFromChildren
 - createRoutesFromElements
 - createSearchParams

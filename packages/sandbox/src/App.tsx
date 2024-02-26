@@ -1,4 +1,11 @@
-import { createBrowserRouter, Outlet, RouterProvider } from '@crcarrick/router'
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  json,
+  redirect,
+  useLoaderData,
+} from '@crcarrick/router'
 // import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 
 function Layout() {
@@ -22,6 +29,34 @@ const router = createBrowserRouter([
             <h2>Hm</h2>
           </div>
         ),
+      },
+      {
+        path: 'redirect',
+        loader() {
+          return redirect('/posts/1/edit')
+        },
+        Component() {
+          return (
+            <div>
+              <h2>Redirect Loader</h2>
+            </div>
+          )
+        },
+      },
+      {
+        path: 'json',
+        loader() {
+          return json({ message: 'Hello, world!' })
+        },
+        Component() {
+          const data = useLoaderData()
+          return (
+            <div>
+              <h2>JSON Loader</h2>
+              <pre>{JSON.stringify(data, null, 2)}</pre>
+            </div>
+          )
+        },
       },
       {
         path: 'posts',
