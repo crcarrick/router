@@ -1,5 +1,7 @@
 export { Await } from './components/Await.js'
 export { Link } from './components/Link.js'
+export { Navigate } from './components/Navigate.js'
+export { NavLink } from './components/NavLink.js'
 export { Outlet } from './components/Outlet.js'
 export { Route } from './components/Route.js'
 export { Routes } from './components/Routes.js'

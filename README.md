@@ -73,7 +73,7 @@ pnpm examples:start:01_basic
 - Await ✅
 - Form
 - Link ✅
-- NavLink
+- NavLink ✅
 - Navigate
 - Outlet ✅
 - Route

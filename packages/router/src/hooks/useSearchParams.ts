@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 
-import type { NavigateOptions } from '../contexts/RouterProvider.js'
+import type { NavigateOptions } from '../types.js'
 
 import { useLocation } from './useLocation.js'
 import { useNavigate } from './useNavigate.js'

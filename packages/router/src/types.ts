@@ -84,3 +84,12 @@ export interface RouteMatch {
   params: PathParams<string>
   pathname: string
 }
+
+export interface NavigateOptions {
+  replace?: boolean
+  state?: any
+}
+
+export interface NavigateFunction {
+  (to: string, options?: NavigateOptions): void
+}

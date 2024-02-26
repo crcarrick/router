@@ -8,20 +8,11 @@ import {
   useState,
 } from 'react'
 
-import type { BrowserRouter, RouteMatch } from '../types.js'
+import type { BrowserRouter, NavigateFunction, RouteMatch } from '../types.js'
 import { matchRoutes } from '../utils/matchRoutes.js'
 import { renderMatches } from '../utils/renderMatches.js'
 
 import { RouteDataLoaderProvider } from './RouteLoaderDataProvider.js'
-
-export interface NavigateOptions {
-  replace?: boolean
-  state?: any
-}
-
-export interface NavigateFunction {
-  (to: string, options?: NavigateOptions): void
-}
 
 export interface RouterContextValue {
   router: BrowserRouter
