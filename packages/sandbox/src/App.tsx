@@ -4,6 +4,7 @@ import {
   RouterProvider,
   json,
   redirect,
+  redirectDocument,
   useLoaderData,
 } from '@crcarrick/router'
 // import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
@@ -35,13 +36,14 @@ const router = createBrowserRouter([
         loader() {
           return redirect('/posts/1/edit')
         },
-        Component() {
-          return (
-            <div>
-              <h2>Redirect Loader</h2>
-            </div>
-          )
+        element: null,
+      },
+      {
+        path: 'redirect-document',
+        loader() {
+          return redirectDocument('/posts/1/edit')
         },
+        element: null,
       },
       {
         path: 'json',
